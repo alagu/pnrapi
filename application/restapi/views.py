@@ -6,8 +6,10 @@ import models
 
 def station(request, station_code):
   station_code = station_code.lower()
-  data = models.get_station(code=station_code)
+  data = models.Station.objects.get_station(code=station_code)
   status = 'OK'
   
   return_obj = {'status' : status, 'data' : data}
-  return HttpResponse(json.dumps(return_obj))
+  response = HttpResponse(json.dumps(return_obj))
+  response['Content-Type'] = 'text/plain'
+  return response
