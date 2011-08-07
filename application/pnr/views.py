@@ -38,5 +38,6 @@ def query(request, pnr_num):
     data = jsonp + '(' + data + ')'
 
   response = HttpResponse(data)
+  response['Content-Type'] = 'text/plain'
   
   return response
