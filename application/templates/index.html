@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <title>PNR Enquiry API</title> 
+    <style> 
+body {
+  font-family:verdana;
+}
+ 
+h1 {
+  font-size:120%;
+  font-weight:normal;
+}
+ 
+h2 {
+  font-size:105%;
+  font-weight:normal;
+}
+ 
+ 
+.endpoint div{
+  margin-top:10px;
+  font-size:90%;
+}
+.code {
+  font-family:monospace;
+  border:0 none;
+  margin:0 none;
+}
+.endpoint .code{
+  border:0 none;
+  font-size:120%;
+}
+ 
+.endpoint .code pre {
+  font-size:100%;
+}
+ 
+th {
+  text-align:left;
+}
+ 
+    </style> 
+  </head> 
+  <body> 
+    <h1>Indian Railways PNR Enquiry API</h1> 
+    <div class="endpoint"> 
+      <div> 
+        <h2>Request:</h2> <div class="code"><a href="http://pnrapi.alagu.net/api/v1.0/pnr/4541990940">http://pnrapi.alagu.net/<10-digit-pnr-number></a></div> 
+      </div> 
+      <div> 
+        <h2>Sample Response:</h2> 
+        <div class="code"> 
+<pre> 
+"status" : "OK",
+"data" : { 
+          "train_name" : "ERNAKULAM EXP",
+          "train_number" : "12677",
+          "from" :  {"name" : "Bangalore City" , "code":"SBC"},
+          "to" :  {"name" : "Coimbatore Jn." , "code":"CBE"},
+          "alight" : {"name" : "Coimbatore Jn." , "code":"CBE"},
+          "board" : {"name" : "Bangalore City" , "code":"SBC"},
+          "class" : "2S",
+          "travel_date" : "2-6-2011"
+          "passenger" : [ { "seat_number" : "D8  , 31,GN", "status" : "CNF" },
+                          { "seat_number" : "D8  , 32,GN", "status" : "CNF" } ],
+	  "chart_prepared" : false
+         }
+</pre></div> 
+      </div> 
+      <div> 
+        <h2> Options:</h2> 
+        <div> 
+          <div class="code">Supports JSONP. Example: <a href="http://pnrapi.alagu.net/4541990940?jsonp=parseJSON">http://pnrapi.alagu.net/<10-digit-pnr-number>?jsonp=yourcallbackfunction</a></div> 
+        </div> 
+      </div> 
+      <div> 
+        <h2>Status Codes:</h2> 
+        <table border=1> 
+          <tr><th>Code</th><th>What it means</th></tr> 
+          <tr><td>OK</td><td>All iz well. You should get a response</td></tr> 
+          <tr><td>TIMEOUT</td><td>There was a server timeout. Server timeout is 1 second.</td></tr> 
+          <tr><td>INVALID</td><td>Invalid PNR Number. It doesn't exist.</td></tr> 
+        </table> 
+      </div> 
+    </div> 
+  </div> 
+ </body> 
+</html> 
