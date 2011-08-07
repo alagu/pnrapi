@@ -46,7 +46,7 @@ def curl_indian_railways(pnr_num):
 
     if len(statuslines) == 0:
       return_object['status'] = 'INVALID'
-      return_object['data']   = 'No results'
+      return_object['data']   = {'pnr_number' : pnr_num , 'message' : 'Invalid number'}
 
     expression = re.compile('>(.*)<')
 
@@ -103,9 +103,8 @@ def curl_indian_railways(pnr_num):
     return_object['data']['pnr_number'] = pnr_num
   except Exception as inst:
     return_object['status'] = 'TIMEOUT'
-    return_object['data']   = 'Request Timed Out'
-    return_object['error']   = '"' + str(inst) + '"'
+    return_object['data']   = {'pnr_number' : pnr_num , 'message' : 'Request Timed Out'}
     logging.debug('TIMEOUT ' + pnr_num)
-    print inst
-
+    
+  
   return return_object

@@ -31,8 +31,6 @@ def query(request, pnr_num):
     if return_object['status'] == 'OK':
         travel_ts = return_object['data']['travel_date']['timestamp']
         if (int(travel_ts) - cur_time) > TWO_WEEKS:
-            print (int(travel_ts)-cur_time)
-            print return_object
             cache.set(cache_key,return_object)
     
   data = json.dumps(return_object)
