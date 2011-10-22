@@ -95,8 +95,9 @@ def curl_indian_railways(pnr_num):
                 return_object['data']['passenger'][passenger_count-1]['status'] = re.sub(r'\s', '',statement)
                 passenger_line = passenger_line + 1
             
-            if i>7 and statement.find('CHART NOT PREPARED'):
+            if i>7 and statement.find('CHART NOT PREPARED') != -1:
               chart_prepared = False
+
           i=i+1
           
     return_object['data']['chart_prepared'] = chart_prepared
