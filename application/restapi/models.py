@@ -1,5 +1,7 @@
 from django.db import models               
 from django.core.cache import cache
+import sqlite3
+
 
 # Create your models here.
 
@@ -21,3 +23,27 @@ class Station(models.Model):
   code = models.CharField(max_length=10,primary_key=True)
   name = models.CharField(max_length=100)
   objects = StationManager()
+
+
+class Schedule():
+  def get_departure_time(self, train_number, station_code):
+    try :
+      conn = sqlite3.connect('/data/indian_railways.sqlite3')
+      query = 'select departure from schedule where train_number=%s and station_code="%s"' % (train_number, station_code )
+      c = conn.cursor()
+      c.execute(query)
+      row = c.fetchone()
+      return row[0]
+    except:
+      return '';
+
+  def get_arrival_time(self, train_number, station_code):
+    try :
+      conn = sqlite3.connect('/data/indian_railways.sqlite3')
+      query = 'select arrival from schedule where train_number=%s and station_code="%s"' % (train_number, station_code )
+      c = conn.cursor()
+      c.execute(query)
+      row = c.fetchone()
+      return row[0]
+    except:
+      return '';

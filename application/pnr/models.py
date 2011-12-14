@@ -71,8 +71,10 @@ def curl_indian_railways(pnr_num):
             return_object['data']['travel_date'] = {'timestamp':int(time.mktime(timeobj)),'date':date}
           elif(i==3):
             return_object['data']['from'] = restapi.models.Station.objects.get_station(code=statement)
+            return_object['data']['from']['time'] = restapi.models.Schedule().get_departure_time(return_object['data']['train_number'], return_object['data']['from']['code'])
           elif(i==4):
             return_object['data']['to'] = restapi.models.Station.objects.get_station(code=statement)
+            return_object['data']['to']['time'] = restapi.models.Schedule().get_arrival_time(return_object['data']['train_number'], return_object['data']['to']['code'])
           elif(i==5):
             return_object['data']['alight'] = restapi.models.Station.objects.get_station(code=statement)
           elif(i==6):
