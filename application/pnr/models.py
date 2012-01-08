@@ -91,10 +91,10 @@ def curl_indian_railways(pnr_num):
               continue
             else:
               if passenger_line == 0:
-                return_object['data']['passenger'][passenger_count-1]['seat_number'] = re.sub(r'\s', '',statement)
+                return_object['data']['passenger'][passenger_count-1]['seat_number'] = statement.replace('  ',' ')
                 passenger_line = passenger_line + 1
               elif passenger_line == 1:
-                return_object['data']['passenger'][passenger_count-1]['status'] = re.sub(r'\s', '',statement)
+                return_object['data']['passenger'][passenger_count-1]['status'] = statement.replace('  ',' ')
                 passenger_line = passenger_line + 1
             
             if i>7 and statement.find('CHART NOT PREPARED') != -1:
