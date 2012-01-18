@@ -11,9 +11,8 @@ import restapi
 
 def curl_indian_railways(pnr_num):
   return_object = {}
-  lccp_pnrno1 = pnr_num[:3]
-  lccp_pnrno2 = pnr_num[3:]
-  params = urllib.urlencode({'lccp_pnrno1': lccp_pnrno1, 'lccp_pnrno2': lccp_pnrno2, 'submitpnr': 'Get Status'})
+  lccp_pnrno1 = pnr_num
+  params = urllib.urlencode({'lccp_pnrno1': lccp_pnrno1, 'submitpnr': 'Get Status'})
   headers = {"Content-type": "application/x-www-form-urlencoded",
              "Host": "www.indianrail.gov.in",
              "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1",
