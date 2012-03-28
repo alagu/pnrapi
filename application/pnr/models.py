@@ -8,6 +8,7 @@ import logging
 import restapi
 
 # Create your models here.
+os.environ['TZ'] = 'Asia/Calcutta'
 
 def curl_indian_railways(pnr_num):
   return_object = {}
@@ -80,6 +81,9 @@ def curl_indian_railways(pnr_num):
           elif(i==6):
             return_object['data']['board'] = restapi.models.Station.objects.get_station(code=statement)
             return_object['data']['board']['time'] = restapi.models.Schedule().get_departure_time(return_object['data']['train_number'], return_object['data']['board']['code'])
+            departure_string  = (date + " " + return_object['data']['board']['time'])
+            departure_date = time.strptime(departure_string, "%d-%m-%Y %H:%M")
+            return_object['data']['board']['timestamp'] = int(time.mktime(time.strptime(departure_string, "%d-%m-%Y %H:%M")))
           elif(i==7):
             return_object['data']['class'] = statement
           elif(i>7):
