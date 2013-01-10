@@ -26,7 +26,7 @@ def curl_indian_railways(pnr_num):
              "Accept": "text/plain"}
   host = 'www.indianrail.gov.in'
   path = '/cgi_bin/inet_pnrstat_cgi.cgi'
-  conn = httplib.HTTPConnection(host,80,timeout=10)
+  conn = httplib.HTTPConnection(host,80,timeout=50)
   return_object = {}
   return_object['status'] = 'OK'
   return_object['data']   = {}
@@ -111,7 +111,7 @@ def curl_indian_railways(pnr_num):
     return_object['data']['pnr_number'] = pnr_num
   except Exception as inst:
     return_object['status'] = 'TIMEOUT'
-    return_object['data']   = {'pnr_number' : pnr_num , 'message' : 'Request Timed Out'}
+    return_object['data']   = {'pnr_number' : pnr_num , 'message' : '[' + str(inst) + '] ' +  inst.message}
     logging.debug('TIMEOUT ' + pnr_num)
     
   
