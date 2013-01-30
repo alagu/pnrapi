@@ -1,6 +1,7 @@
 Django==1.4.3
 Flask==0.8
 Jinja2==2.6
+MySQL-python==1.2.4
 PyAudio==0.2.7
 PyRSS2Gen==1.0.0
 Pygments==1.5
