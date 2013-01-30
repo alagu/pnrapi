@@ -48,6 +48,7 @@ def curl_indian_railways(pnr_num):
       return_object['status'] = 'INVALID'
       return_object['data']   = {'pnr_number' : pnr_num , 'message' : 'Invalid number'}
 
+
     expression = re.compile('>(.*)<')
 
     i = 0
@@ -70,16 +71,16 @@ def curl_indian_railways(pnr_num):
             timeobj = time.strptime(date, "%d-%m-%Y")
             return_object['data']['travel_date'] = {'timestamp':int(time.mktime(timeobj)),'date':date}
           elif(i==3):
-            return_object['data']['from'] = restapi.models.Station.objects.get_station(code=statement)
+            return_object['data']['from'] = restapi.models.Station().get_station(code=statement)
             return_object['data']['from']['time'] = restapi.models.Schedule().get_departure_time(return_object['data']['train_number'], return_object['data']['from']['code'])
           elif(i==4):
-            return_object['data']['to'] = restapi.models.Station.objects.get_station(code=statement)
+            return_object['data']['to'] = restapi.models.Station().get_station(code=statement)
             return_object['data']['to']['time'] = restapi.models.Schedule().get_arrival_time(return_object['data']['train_number'], return_object['data']['to']['code'])
           elif(i==5):
-            return_object['data']['alight'] = restapi.models.Station.objects.get_station(code=statement)
+            return_object['data']['alight'] = restapi.models.Station().get_station(code=statement)
             return_object['data']['alight']['time'] = restapi.models.Schedule().get_arrival_time(return_object['data']['train_number'], return_object['data']['alight']['code'])
           elif(i==6):
-            return_object['data']['board'] = restapi.models.Station.objects.get_station(code=statement)
+            return_object['data']['board'] = restapi.models.Station().get_station(code=statement)
             return_object['data']['board']['time'] = restapi.models.Schedule().get_departure_time(return_object['data']['train_number'], return_object['data']['board']['code'])
             departure_string  = (date + " " + return_object['data']['board']['time'])
             departure_date = time.strptime(departure_string, "%d-%m-%Y %H:%M")
